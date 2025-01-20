@@ -50,7 +50,7 @@ class Weapons {
                     <div class="ammo-area">
                         <p class="ammo-quantity">X${weaponData.ammo}</p>
                     </div>
-                    <img src="http://localhost/inventario/${weaponName}.png" onerror="this.src='../assets/images/no_image.png'"/>
+                    <img src="http://127.0.0.1/ultimate/inventario/${weaponName}.png" onerror="this.src='http://127.0.0.1/ultimate/inventario/none.png'"/>
                 </div>
                 `)
                 $(".left-content").append(weaponElement)

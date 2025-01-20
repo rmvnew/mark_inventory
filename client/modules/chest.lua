@@ -101,9 +101,9 @@ CreateThread(function()
         local plyCoords = GetEntityCoords(ply)
         for k,v in pairs(Chests) do 
             local distance = #(v.coords - plyCoords)
-            if distance < 4.0 then 
+            if distance < 5.0 then 
                 msec = 4
-                DrawMarker(30, v.coords - vec3(0.0,0.0,0.4), 0, 0, 0, 0, 180.0, 0, 0.7, 0.7, 0.7, 20, 255, 213, 75, 1, 0, 0, 1)
+                DrawMarker(30, v.coords - vec3(0.0,0.0,0.4), 0, 0, 0, 0, 180.0, 0, 0.5, 0.5, 0.5, 20, 255, 66, 150, 0, 1, 0, 0)
                 if distance < 1.2 and IsControlJustPressed(0,38) then 
                     
                     ExecuteCommand('openchest')

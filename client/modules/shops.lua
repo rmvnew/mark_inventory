@@ -308,7 +308,7 @@ function NearShopThread(store, coordIndex)
                     end
                 else
                     -- Marker de loja
-                    DrawMarker(28, mCoods.x,mCoods.y, mCoods.z - 0.4, 0, 0, 0, 0, 180.0, 0, 0.05, 0.05, 0.05, 50, 150, 255, 255, 0, 0, 0, 1)
+                    DrawMarker(28, mCoods.x,mCoods.y, mCoods.z + 0.3, 0, 0, 0, 0, 180.0, 0, 0.05, 0.05, 0.05, 50, 150, 255, 160, 0, 0, 0, 0)
                    
                 end
                 

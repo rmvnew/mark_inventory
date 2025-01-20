@@ -153,7 +153,7 @@ class Inventory {
         $('.name-frame').html(globalThis.SelectedItem.name);
         $('.weight-frame').html(`${(globalThis.SelectedItem.weight || 0).toFixed(1)} kg`);
         $('.circle-quantity').html((globalThis.SelectedItem.amount) ? globalThis.SelectedItem.amount + "x" : "R$" + globalThis.SelectedItem.price);
-        $('.image-grame').attr('src', `http://181.215.254.205/vrp_imagens/${globalThis.SelectedItem.item}.png`);
+        $('.image-grame').attr('src', `http://http://127.0.0.1/ultimate/inventario${globalThis.SelectedItem.item}.png`);
         $(`.slot-${side}${item.id}`).addClass('slot-active');
     }
 
