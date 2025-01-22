@@ -70,7 +70,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CREATE CHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand('createChest',function(source, args, rawCommand)
+RegisterCommand('criarbau',function(source, args, rawCommand)
 	local user_id = vRP.getUserId(source)
 	if user_id and vRP.hasPermission(user_id,"admin.permissao") then
 		local x,y,z = vRPclient.getPosition(source)
@@ -795,7 +795,7 @@ RegisterTunnel.useItem = function(slot, amount)
                                     vTunnel.SetInventoryBlocked(source, 0) --
                                     SetTimeout(45000, function()
                                         vTunnel._setEnergetico(source, false)
-                                        TriggerClientEvent("Notify", source, "negado", "O Efeito do energetico acabou.", 5000)
+                                        TriggerClientEvent("Notify", source, "importante", "O Efeito do energetico acabou.", 5000)
                                         vTunnel.SetInventoryBlocked(source, 0) --
                                     end)
                                 end)
@@ -1134,7 +1134,7 @@ function RegisterTunnel.pegarItem(id)
                 vRP.giveInventoryItem(user_id, tostring(dropCache.item), parseInt(amount), true)
             end
 
-            vRP.sendLog("https://discord.com/api/webhooks/1190203603546279987/GpWha2SazonsT6aaDhbRKzpgeTPdkNpK9JI9pT24scxKaHK5akkyvqCeEafNy1hOYAli","O ID " .. user_id .. " pegou o item do chão " ..dropCache.item .. " na quantidade de " .. amount .."x.")
+            vRP.sendLog("","O ID " .. user_id .. " pegou o item do chão " ..dropCache.item .. " na quantidade de " .. amount .."x.")
             return { success = "Você pegou o item com sucesso." }
         else
            TriggerClientEvent("Notify", source, "negado", "Mochila cheia.", 6000)
@@ -1399,6 +1399,7 @@ RegisterTunnel.requireChest = function(data, maxbau, id)
     end
 end
 
+-- ####################################
 
 RegisterTunnel.storeChestItem = function(playerslot, amount, targetslot)
 	local source = source
@@ -1421,7 +1422,7 @@ RegisterTunnel.storeChestItem = function(playerslot, amount, targetslot)
                                 dataVehicle[bau][1][tostring(targetslot)].amount = dataVehicle[bau][1][tostring(targetslot)].amount + amount
                             else
                                 dataVehicle[bau][1][tostring(targetslot)] = { amount = amount, item = inv[playerslot].item }
-                                vRP.sendLog("https://discord.com/api/webhooks/1189707217730011236/YWXXBVybWFvvjcOzP6gc0R3j9fuu1WsU8ePhRbcKmjg5PEa_sdUIzt7U_30OarNMuPoe","O ID " .. user_id .. " colocou o ITEM: "..inv[playerslot].item.." no bau do CARRO: "..dataVehicle[bau][2].." PLACA: "..dataVehicle[bau][3].." na quantidade de " .. amount .."x.")
+                                vRP.sendLog("","O ID " .. user_id .. " colocou o ITEM: "..inv[playerslot].item.." no bau do CARRO: "..dataVehicle[bau][2].." PLACA: "..dataVehicle[bau][3].." na quantidade de " .. amount .."x.")
                             end
                         end
                     else
@@ -1445,7 +1446,7 @@ RegisterTunnel.storeChestItem = function(playerslot, amount, targetslot)
                             else
                                 dataOrgChest[bau][1][tostring(targetslot)] = { amount = amount, item = inv[playerslot].item }
                             end
-                            vRP.sendLog("https://discord.com/api/webhooks/1241648945638412338/MwQ16UbYqemiXf020CqIyxYPmvHg1PyEOVm1MCkBMlW-m3_AQhl1vzec6olBLzU254s5","O ID " .. user_id .. " colocou o ITEM: "..inv[playerslot].item.." no bau da FACS: "..bau.." na quantidade de " .. amount .."x.")
+                            vRP.sendLog("","O ID " .. user_id .. " colocou o ITEM: "..inv[playerslot].item.." no bau da FACS: "..bau.." na quantidade de " .. amount .."x.")
                             vRP.execute("sjr/insertLog", {nome = identity.nome.." "..identity.sobrenome, passaporte = user_id, cargo = vRP.getUserGroupByType(user_id,'org'), bau = bau, item = inv[playerslot].item, qtd = amount, acao = 'guardou'})
                         end
                     else
@@ -1465,7 +1466,7 @@ RegisterTunnel.storeChestItem = function(playerslot, amount, targetslot)
                                 dataHouseChest[bau][1][tostring(targetslot)] = { amount = amount, item = inv[playerslot].item }
                             end
                         end
-                        vRP.sendLog("https://discord.com/api/webhooks/1189707407652311100/RF9BH1MHU4lu-t9xtw_wKTfesWqEOMmfUNtTT7l-Lmv3c5p7XEML-Zml52Dr2RQW82t_","O ID " .. user_id .. " colocou o ITEM: "..inv[playerslot].item.." no bau da CASA: "..bau.." na quantidade de " .. amount .."x.")
+                        vRP.sendLog("","O ID " .. user_id .. " colocou o ITEM: "..inv[playerslot].item.." no bau da CASA: "..bau.." na quantidade de " .. amount .."x.")
                     else
                         return { error = "Bau está cheio."}
                     end
@@ -1476,6 +1477,138 @@ RegisterTunnel.storeChestItem = function(playerslot, amount, targetslot)
 		end
 	end
 end
+
+-- COLOCAR NO BAU
+
+-- -- Exemplo de código de carregamento (adapte ao seu caso)
+-- Chests = {} -- Limpa a tabela Chests antes de carregar
+-- local function loadChestsFromDatabase()
+--     print("Iniciando carregamento dos baús do banco de dados...")
+--     local result = exports.oxmysql:querySync("SELECT * FROM vrp_chests")
+
+--     if result then
+--         for _, row in ipairs(result) do
+--             local id = row.id
+--             local permiss = row.permiss
+--             local name = row.name
+--             local x = row.x
+--             local y = row.y
+--             local z = row.z
+--             local weight = row.weight
+
+--             print(">>>>>>>>>>>  name: ",name)
+            
+--             Chests[name] = {
+--                 id = id,
+--                 permiss = permiss,
+--                 x = x,
+--                 y = y,
+--                 z = z,
+--                 weight = weight
+--             }
+--         end
+--         print("Baús carregados do banco de dados com sucesso.")
+--     else
+--         print("Erro ao carregar baús do banco de dados.")
+--     end
+-- end
+
+-- -- Chamar a função para carregar os baús
+-- loadChestsFromDatabase()
+
+-- -- Inicializar dataOrgChest com base em Chests
+-- dataOrgChest = {}
+-- for k, v in pairs(Chests) do
+--     dataOrgChest[k] = { [1] = {} }
+-- end
+
+-- -- Debug para verificar inicialização de dataOrgChest
+-- print("Chaves inicializadas em dataOrgChest:")
+-- for k, v in pairs(dataOrgChest) do
+--     print(k, v)
+-- end
+
+
+
+-- -- Script que define a função e o exports
+-- RegisterTunnel.storeOrgChestItem = function(item, amount, bau)
+--     print(">> Parâmetros recebidos:")
+--     print("Item:", item)
+--     print("Quantidade:", amount)
+--     print("Baú recebido:", bau)
+
+--     local normalizedBau = string.gsub(bau, "%s+", "") -- Remove espaços ou caracteres invisíveis
+--     print("Baú normalizado:", normalizedBau)
+
+--     print("Chaves disponíveis em Chests:")
+--     for k in pairs(Chests) do
+--         if k == normalizedBau then
+--             print("Nome do baú encontrado em Chests:", k)
+--         else
+--             print("Nome do baú não encontrado em Chests:", normalizedBau, "!= ", k)
+--         end
+--     end
+
+--     if not Chests[normalizedBau] then
+--         print("Erro: Baú não encontrado em Chests.")
+--         return { error = "Baú inválido." }
+--     end
+
+--     print("Verificando dataOrgChest para o baú:", normalizedBau)
+--     if not dataOrgChest[normalizedBau] then
+--         print("dataOrgChest não contém o baú:", normalizedBau)
+--         return { error = "Baú inválido." }
+--     elseif not dataOrgChest[normalizedBau][1] then
+--         print("dataOrgChest[bau][1] não inicializado para o baú:", normalizedBau)
+--         return { error = "Baú inválido." }
+--     else
+--         print("dataOrgChest[bau] inicializado corretamente:", dataOrgChest[normalizedBau])
+--     end
+
+--     if not Chests[normalizedBau] or not dataOrgChest[normalizedBau] or not dataOrgChest[normalizedBau][1] then
+--         print("Erro: Baú inválido - Nome normalizado:", normalizedBau)
+--         return { error = "Baú inválido." }
+--     end
+
+--     local item_weight = vRP.getItemWeight(item)
+--     local total_weight = vRP.computeItemsWeight(dataOrgChest[normalizedBau][1])
+--     local max_weight = Chests[normalizedBau].weight
+--     local amount_int = parseInt(amount)
+
+--     if total_weight + item_weight * amount_int > max_weight then
+--         return { error = "Baú está cheio." }
+--     end
+
+--     for slot, data in pairs(dataOrgChest[normalizedBau][1]) do
+--         if data.item == item then
+--             dataOrgChest[normalizedBau][1][slot].amount = data.amount + amount_int
+--             return { success = true, message = "Item somado ao baú." }
+--         end
+--     end
+
+--     local first_empty_slot = nil
+--     for i = 1, 100 do
+--         if not dataOrgChest[normalizedBau][1][tostring(i)] then
+--             first_empty_slot = i
+--             break
+--         end
+--     end
+
+--     if not first_empty_slot then
+--         return { error = "Não há slots vagos no baú." }
+--     end
+
+--     dataOrgChest[normalizedBau][1][tostring(first_empty_slot)] = { amount = amount_int, item = item }
+--     return { success = true, message = "Item adicionado ao baú." }
+-- end
+
+
+-- exports('storeOrgChestItem',function (item, amount, bau)
+--     return RegisterTunnel.storeOrgChestItem(item, amount, bau)
+-- end)
+
+
+-- ###############
 
 RegisterTunnel.takeChestItem = function(item, amount, playerslot, slot)
 	local source = source
@@ -1489,7 +1622,7 @@ RegisterTunnel.takeChestItem = function(item, amount, playerslot, slot)
                     if dataVehicle[bau][1][tostring(slot)].amount >= amount then
                         if vRP.computeInvWeight(user_id) + vRP.getItemWeight(tostring(dataVehicle[bau][1][tostring(slot)].item)) * parseInt(amount) <= vRP.getInventoryMaxWeight(user_id) then
                             vRP.giveInventoryItem(user_id, dataVehicle[bau][1][tostring(slot)].item,amount, true, playerslot)
-                            vRP.sendLog("https://discord.com/api/webhooks/1189707217730011236/YWXXBVybWFvvjcOzP6gc0R3j9fuu1WsU8ePhRbcKmjg5PEa_sdUIzt7U_30OarNMuPoe","O ID " .. user_id .. " retirou o ITEM: "..dataVehicle[bau][1][tostring(slot)].item.." no bau do CARRO: "..dataVehicle[bau][2].." PLACA: "..dataVehicle[bau][3].." na quantidade de " .. amount .."x.")
+                            vRP.sendLog("","O ID " .. user_id .. " retirou o ITEM: "..dataVehicle[bau][1][tostring(slot)].item.." no bau do CARRO: "..dataVehicle[bau][2].." PLACA: "..dataVehicle[bau][3].." na quantidade de " .. amount .."x.")
 
                             dataVehicle[bau][1][tostring(slot)].amount = dataVehicle[bau][1][tostring(slot)].amount - amount
                             if dataVehicle[bau][1][tostring(slot)].amount <= 0 then
@@ -1511,7 +1644,7 @@ RegisterTunnel.takeChestItem = function(item, amount, playerslot, slot)
                     if dataOrgChest[bau][1][tostring(slot)].amount >= amount then
                         if vRP.computeInvWeight(user_id) + vRP.getItemWeight(tostring(dataOrgChest[bau][1][tostring(slot)].item)) * parseInt(amount) <= vRP.getInventoryMaxWeight(user_id) then
                             vRP.giveInventoryItem(user_id, dataOrgChest[bau][1][tostring(slot)].item,amount, true, playerslot)
-                            vRP.sendLog("https://discord.com/api/webhooks/1241648945638412338/MwQ16UbYqemiXf020CqIyxYPmvHg1PyEOVm1MCkBMlW-m3_AQhl1vzec6olBLzU254s5","O ID " .. user_id .. " retirou o ITEM: "..dataOrgChest[bau][1][tostring(slot)].item.." do bau da FACS: "..bau.." na quantidade de " .. amount .."x.")
+                            vRP.sendLog("","O ID " .. user_id .. " retirou o ITEM: "..dataOrgChest[bau][1][tostring(slot)].item.." do bau da FACS: "..bau.." na quantidade de " .. amount .."x.")
                             vRP.execute("sjr/insertLog", {nome = identity.nome.." "..identity.sobrenome, passaporte = user_id, cargo = vRP.getUserGroupByType(user_id,'org'), bau = bau, item = dataOrgChest[bau][1][tostring(slot)].item, qtd = amount, acao = 'retirou'})
                             dataOrgChest[bau][1][tostring(slot)].amount = dataOrgChest[bau][1][tostring(slot)].amount - amount
                             if dataOrgChest[bau][1][tostring(slot)].amount <= 0 then
@@ -1540,7 +1673,7 @@ RegisterTunnel.takeChestItem = function(item, amount, playerslot, slot)
                     
                         if vRP.computeInvWeight(user_id) + vRP.getItemWeight(tostring(dataHouseChest[bau][1][tostring(slot)].item)) * parseInt(amount) <= vRP.getInventoryMaxWeight(user_id) then
                             vRP.giveInventoryItem(user_id, dataHouseChest[bau][1][tostring(slot)].item,amount, true, playerslot)
-                            vRP.sendLog("https://discord.com/api/webhooks/1189707407652311100/RF9BH1MHU4lu-t9xtw_wKTfesWqEOMmfUNtTT7l-Lmv3c5p7XEML-Zml52Dr2RQW82t_","O ID " .. user_id .. " retirou o ITEM: "..dataHouseChest[bau][1][tostring(slot)].item.." do bau da CASA: "..bau.." na quantidade de " .. amount .."x.")
+                            vRP.sendLog("","O ID " .. user_id .. " retirou o ITEM: "..dataHouseChest[bau][1][tostring(slot)].item.." do bau da CASA: "..bau.." na quantidade de " .. amount .."x.")
                             
                             dataHouseChest[bau][1][tostring(slot)].amount = dataHouseChest[bau][1][tostring(slot)].amount - amount
                             if dataHouseChest[bau][1][tostring(slot)].amount <= 0 then

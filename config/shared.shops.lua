@@ -12,16 +12,17 @@ Shops = {
 			["mochila"] = 10000,
 			["pneus"] = 100,
 			["celular"] = 2000,
-			["vodka"] = 100,
-			["cerveja"] = 100,
-			["corote"] = 100,
-			["pinga"] = 100,
+			["water"] = 5000,
+			["sprunk"] = 5000,
+			["cocacola"] = 5000,
+			["sanduiche"] = 5000,
 			["whisky"] = 100,
 			["absinto"] = 100,
 			["skolb"] = 100,
 		},
 		coords = {
 			vec3(25.75,-1346.96,29.49), --ok
+
 			vec3(2556.56,382.03,108.61), --ok
 			vec3(1163.55, -323.02, 69.21), --ok
 			vec3(-707.31, -913.75, 19.22), --ok
