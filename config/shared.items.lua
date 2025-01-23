@@ -2588,13 +2588,13 @@ Items = {
         weight = 1.0,
         type = "use"
     },
-    ["garrafavazia"] = {
-        index = "garrafavazia",
-        name = "Garrafavazia",
-        weight = 0.2,
-        func =  nil,
-        type = "use"
-    },	
+    -- ["garrafavazia"] = {
+    --     index = "garrafavazia",
+    --     name = "Garrafavazia",
+    --     weight = 0.2,
+    --     func =  nil,
+    --     type = "use"
+    -- },	
 
     ["sabonete"] = {
         index = "sabonete",
@@ -2628,6 +2628,86 @@ Items = {
         type = "use"
     },	
 
+  
+    ["garrafavazia"] = {
+        index = "garrafavazia",
+        name = "Garrafa vazia",
+        weight = 0.2,
+        type = "use"
+    }, 
+    ["feijao"] = {
+        index = "feijao",
+        name = "Feijao",
+        weight = 0.3,
+        type = "use"
+    }, 
+    ["queijo"] = {
+        index = "queijo",
+        name = "Queijo",
+        weight = 0.3,
+        type = "use"
+    }, 
+    ["embutidos"] = {
+        index = "embutidos",
+        name = "Embutidos",
+        weight = 0.8,
+        type = "use"
+    }, 
+    ["sal"] = {
+        index = "sal",
+        name = "Sal",
+        weight = 0.3,
+        type = "use"
+    }, 
+    ["carnedegado"] = {
+        index = "carnedegado",
+        name = "Carne de gado",
+        weight = 3.0,
+        type = "use"
+    }, 
+    ["limao"] = {
+        index = "limao",
+        name = "Limão",
+        weight = 0.5,
+        type = "use"
+    }, 
+    ["laranja"] = {
+        index = "laranja",
+        name = "Laranja",
+        weight = 0.5,
+        type = "use"
+    }, 
+    ["acucar"] = {
+        index = "acucar",
+        name = "Açucar",
+        weight = 0.3,
+        type = "use"
+    }, 
+    ["farinha_de_trigo"] = {
+        index = "farinha_de_trigo",
+        name = "Farinha de trigo",
+        weight = 0.5,
+        type = "use"
+    },
+    
+    ["graos_de_cafe"] = {
+        index = "graos_de_cafe",
+        name = "Grãos de café",
+        weight = 0.5,
+        type = "use"
+    },
+    ["leite_de_gado"] = {
+        index = "leite_de_gado",
+        name = "Leite de Gado",
+        weight = 0.5,
+        type = "use"
+    },
+    ["cafe_com_leite"] = {
+        index = "cafe_com_leite",
+        name = "Café com Leite",
+        weight = 0.5,
+        type = "use"
+    },
     ["cafe"] = {
         index = "cafe",
         name = "Café",

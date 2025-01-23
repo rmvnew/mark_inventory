@@ -399,6 +399,8 @@ function play_drink(source, tipo, segundos)
 		prop = "prop_ld_flow_bottle"
 	elseif tipo == "cafe" then
 		prop = "prop_fib_coffee"
+    elseif tipo == "cafe_com_leite" then
+		prop = "prop_fib_coffee"
 	elseif tipo == "cocacola" then
 		prop = "ng_proc_sodacan_01a"
 	elseif tipo == "sucol" then
@@ -805,6 +807,31 @@ RegisterTunnel.useItem = function(slot, amount)
                                         vTunnel.SetInventoryBlocked(source, 0) --
                                     end)
                                 end)
+                            end
+                        elseif item == "cafe_com_leite" then
+                            print("CAFEEEEEEEEEEEEEEEE")
+                            if vRP.tryGetInventoryItem(user_id, item, 1, true, slot) then
+                                TriggerClientEvent('closeInventory', source)
+                                vTunnel.SetInventoryBlocked(source, 5000000) -- Ajuste o tempo conforme necessário
+                                func:setBlockCommand(user_id, 10)
+                                vTunnel.blockButtons(source, true)
+                                play_drink(source, item, 10000) -- Adapte a animação se necessário
+                                TriggerClientEvent("progress", source, 10000)
+                                SetTimeout(10000, function()
+                                    -- Use os valores definidos no cfg/items.lua para "cafe_com_leite"
+                                    -- local itemData = vRP.cfg.items["cafe_com_leite"]
+                                    -- local cafe_com_leite_fome = itemData[3] or 0
+                                    -- local cafe_com_leite_sede = itemData[5] or 0
+                    
+                                    vRP.varyHunger(user_id, tonumber(fome) * 1)
+                                    vRP.varyThirst(user_id, tonumber(sede) * 1)
+                                    vTunnel.blockButtons(source, false)
+                                    vTunnel.SetInventoryBlocked(source, 0)
+                                    vRPclient._DeletarObjeto(source)
+                                    vRPclient._stopAnim(source, false)
+                                    TriggerClientEvent("Notify", source, "sucesso", "Você bebeu o Café com Leite.", 5000)
+                                end)
+                                return { success = "Você bebeu o Café com Leite." }
                             end
                     elseif vRP.tryGetInventoryItem(user_id, item, 1, true, slot) then
                         TriggerClientEvent('closeInventory', source)
