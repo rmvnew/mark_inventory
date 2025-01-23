@@ -809,7 +809,7 @@ RegisterTunnel.useItem = function(slot, amount)
                                 end)
                             end
                         elseif item == "cafe_com_leite" then
-                            print("CAFEEEEEEEEEEEEEEEE")
+                            
                             if vRP.tryGetInventoryItem(user_id, item, 1, true, slot) then
                                 TriggerClientEvent('closeInventory', source)
                                 vTunnel.SetInventoryBlocked(source, 5000000) -- Ajuste o tempo conforme necessário
@@ -846,7 +846,8 @@ RegisterTunnel.useItem = function(slot, amount)
                                 vRPclient._DeletarObjeto(source)
                                 vRPclient._stopAnim(source, false)
                                 vTunnel.SetInventoryBlocked(source, 0) --
-                            if item == "agua" then
+                            if item == "water" then
+                               
                                 vTunnel.blockButtons(source, false)
                                 vTunnel.SetInventoryBlocked(source, 0) --
                                 vRP.giveInventoryItem(user_id, "garrafavazia", 1, true)
