@@ -12,3 +12,17 @@ end
 function API.toggleCarry(target)
 
 end
+
+RegisterNetEvent('body_armor_vest')
+AddEventHandler('body_armor_vest',function (source)
+    
+    local ped = PlayerId()
+        print('SOMMMMMMMMMMMMMMMMMMMMMMMM', player)
+        --  PlaySoundFrontend(player, "ARMOR_PICKUP", "HUD_MINI_GAME_SOUNDSET", true)
+        PlaySoundFrontend(-1, "PICK_UP", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
+      
+
+
+
+   
+end)

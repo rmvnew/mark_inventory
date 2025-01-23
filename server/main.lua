@@ -480,21 +480,27 @@ RegisterTunnel.useItem = function(slot, amount)
                         end
                         return { error = "Você equipou o máximo de mochila." }
 
-                    elseif item == "colete" then
-                        if vRP.tryGetInventoryItem(user_id, item, 1, true, slot) then
-                            TriggerClientEvent('closeInventory', source)
-                            func:setBlockCommand(user_id, 4)
-                            vTunnel.blockButtons(source, true)
-                            vRPclient._playAnim(source, true,{ { "anim@mp_fireworks","place_firework_3_box"}},false)
-                            TriggerClientEvent("progress", source, 4000)
-                            SetTimeout(4000,function()
-                                vTunnel.blockButtons(source, false)
-                                vRPclient._stopAnim(source, true)
-                                SetPedArmour(source,200)
-                                TriggerClientEvent("Notify", source, "sucesso", "<b>Colete</b> colocado com sucesso.",9000)
-                            end)
-                            return { success = "Colete colocado com sucesso." }
-                        end
+                   
+
+                elseif item == "body_armor" then
+                    if vRP.tryGetInventoryItem(user_id, item, 1, true, slot) then
+                         TriggerClientEvent('closeInventory', source)
+                         func:setBlockCommand(user_id, 4)
+                         vTunnel.blockButtons(source, true)
+                        -- vRPclient._playAnim(source, true,{ { "anim@mp_fireworks","place_firework_3_box"}},false)
+                        vRPclient._playAnim(source, true, { { "clothingtie", "try_tie_positive_a" } }, false)
+                        TriggerClientEvent("progress", source, 4000)
+                        SetTimeout(4000,function()
+                            TriggerClientEvent("body_armor_vest",source)
+                          vTunnel.blockButtons(source, false)
+                          vRPclient._stopAnim(source, true)
+                          SetPedArmour(source,200)
+                          vTunnel._setVest(source, true) -- Chamando a API do colete corretamente
+                          TriggerClientEvent("Notify", source, "sucesso", "<b>Colete</b> colocado com sucesso.",9000)
+                      end)
+                        return { success = "Colete colocado com sucesso." }
+                    end
+
                 --    end
 
 
